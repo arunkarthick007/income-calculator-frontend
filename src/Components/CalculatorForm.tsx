@@ -19,14 +19,11 @@ const appointConvRate = 70;
 const avgRefCalls = 4;
 
 export const CalculatorForm = () => {
-  //   const form = useForm<FormInputs>();
-  //   const {
-  //     register,
-  //     control,
-  //     formState: { errors },
-  //     setValue,
-  //     getValues,
-  //   } = form;
+  const form = useForm<FormInputs>();
+  const {
+    watch,
+    formState: { errors },
+  } = form;
 
   const initialState: FormInputs = {
     cashweek: 1,
@@ -55,48 +52,46 @@ export const CalculatorForm = () => {
   const calculateValues = () => {
     console.log("Hey this is Arun");
     if (!forms) return;
+    const cashbeforeadvance =
+      Math.round((forms.cashweek / forms.percentagerange) * 100 * 100) / 100;
+    const premiumissued =
+      Math.round((cashbeforeadvance / forms.commissionrange) * 100 * 100) / 100;
+    const premiumsubmitted =
+      Math.round((premiumissued / premiumIssueRate) * 100 * 100) / 100;
+    const applicationeachweek = Math.round(premiumsubmitted / avgAnnualPremium);
+    const noofsuccessfulcarrybacks = Math.round(
+      applicationeachweek / avgApplicationPerFamily
+    );
+    const carrybackseachweek =
+      Math.round((noofsuccessfulcarrybacks / closingRate) * 100 * 100) / 100;
+    const scooppresentation = Math.floor(
+      (carrybackseachweek / scoopConversionRate) * 100
+    );
+    const appointmentconversionrate =
+      Math.round((scooppresentation / appointConvRate) * 100) + 1;
+    const numberofphonefirstapp =
+      Math.round(appointmentconversionrate * avgRefCalls) - 1;
+    const numberofcallsperday = Math.round(
+      numberofphonefirstapp / forms.workingdays
+    );
+    const incomepercall = Math.round(forms.cashweek / numberofphonefirstapp);
     const data = {
-      cashbeforeadvance:
-        Math.round((forms.cashweek / forms.percentagerange) * 100 * 100) / 100,
-      premiumissued:
-        Math.round(
-          (calculatedValues.cashbeforeadvance / forms.commissionrange) *
-            100 *
-            100
-        ) / 100,
-      premiumsubmitted:
-        Math.round(
-          (calculatedValues.premiumissued / premiumIssueRate) * 100 * 100
-        ) / 100,
-      applicationeachweek: Math.round(
-        calculatedValues.premiumsubmitted / avgAnnualPremium
-      ),
-      noofsuccessfulcarrybacks: Math.round(
-        calculatedValues.applicationeachweek / avgApplicationPerFamily
-      ),
-      carrybackseachweek:
-        (calculatedValues.noofsuccessfulcarrybacks / closingRate) * 100,
-      scooppresentation: Math.floor(
-        (calculatedValues.carrybackseachweek / scoopConversionRate) * 100
-      ),
-      appointmentconversionrate:
-        Math.round(
-          (calculatedValues.scooppresentation / appointConvRate) * 100
-        ) + 1,
-      numberofphonefirstapp:
-        Math.round(calculatedValues.appointmentconversionrate * avgRefCalls) -
-        1,
-      numberofcallsperday: Math.round(
-        calculatedValues.numberofphonefirstapp / forms.workingdays
-      ),
-      incomepercall: Math.round(
-        forms.cashweek / calculatedValues.numberofphonefirstapp
-      ),
+      cashbeforeadvance,
+      premiumissued,
+      premiumsubmitted,
+      applicationeachweek,
+      noofsuccessfulcarrybacks,
+      carrybackseachweek,
+      scooppresentation,
+      appointmentconversionrate,
+      numberofphonefirstapp,
+      numberofcallsperday,
+      incomepercall,
     };
     setCalcalculatedValues(data);
+    console.log(form);
   };
 
-  useEffect(calculateValues, [forms]);
   //Onchange Handlers
   const handleChanges = (e: any) => {
     const { name, value } = e.target;
@@ -107,6 +102,8 @@ export const CalculatorForm = () => {
       return temp;
     });
   };
+
+  useEffect(calculateValues, [forms]);
 
   //Registering fields with React-Hook
   //const cashField = register("cashweek", { required: true });
@@ -427,6 +424,7 @@ export const CalculatorForm = () => {
                   name="numberofphonefirstapp"
                   value={calculatedValues.numberofphonefirstapp}
                   placeholder="0"
+                  min="0"
                   className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                   readOnly
                 />
@@ -472,6 +470,7 @@ export const CalculatorForm = () => {
                 name="numberofcallsperday"
                 value={calculatedValues.numberofcallsperday}
                 placeholder="Type her"
+                min="0"
                 className="input input-ghost bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 readOnly
               />
