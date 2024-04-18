@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import {
   Page,
   Text,
@@ -42,14 +42,22 @@ const styles = StyleSheet.create({
     alignSelf: "center",
   },
 });
-var data: any;
-
-const loadData = () => {
-  data = localStorage.getItem("calData");
-};
-useEffect(loadData, []);
 
 function IncomePDF() {
+  const [data, setData]: any = useState({});
+
+  const loadData = () => {
+    const storeData = localStorage.getItem("calData");
+    if (storeData) {
+      const parsedData = JSON.parse(storeData);
+      console.log(parsedData);
+      setData(parsedData);
+    }
+  };
+  useEffect(loadData, []);
+  useEffect(() => {
+    console.log("Updated Data:", data);
+  }, [data]);
   return (
     <Document>
       <Page size="A4" style={styles.page}>
