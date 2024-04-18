@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
-import { DevTool } from "@hookform/devtools";
+import { useNavigate } from "react-router-dom";
+import SignatureCanvas from "react-signature-canvas";
+import Signature from "./Signature";
 
 type FormInputs = {
-  cashweek: number;
-  percentagerange: number;
-  commissionrange: number;
+  cashmonth: 1;
+  percentagerange: 5;
+  commissionrange: 5;
   workingdays: number;
 };
 
@@ -23,17 +25,28 @@ export const CalculatorForm = () => {
   const {
     watch,
     formState: { errors },
+    control,
   } = form;
 
   const initialState: FormInputs = {
-    cashweek: 1,
-    percentagerange: 1,
-    commissionrange: 1,
+    cashmonth: 1,
+    percentagerange: 5,
+    commissionrange: 5,
     workingdays: 1,
   };
+
+  const navigate = useNavigate();
+
   const [forms, setForm] = React.useState(initialState);
 
+  const [name, setName] = useState(""); // State variable for name input
+  const [email, setEmail] = useState(""); //State variable for email input
+  const [sign, setSign] = useState("");
+
+  const [isPending, setIsPending] = useState("false");
+
   const [calculatedValues, setCalcalculatedValues] = React.useState({
+    cashperweek: 0,
     cashbeforeadvance: 0,
     premiumissued: 0,
     premiumsubmitted: 0,
@@ -50,10 +63,10 @@ export const CalculatorForm = () => {
   const [cashError, setCashError] = React.useState("");
 
   const calculateValues = () => {
-    console.log("Hey this is Arun");
     if (!forms) return;
+    const cashperweek = Math.round(forms.cashmonth / 4);
     const cashbeforeadvance =
-      Math.round((forms.cashweek / forms.percentagerange) * 100 * 100) / 100;
+      Math.round((cashperweek / forms.percentagerange) * 100 * 100) / 100;
     const premiumissued =
       Math.round((cashbeforeadvance / forms.commissionrange) * 100 * 100) / 100;
     const premiumsubmitted =
@@ -74,8 +87,9 @@ export const CalculatorForm = () => {
     const numberofcallsperday = Math.round(
       numberofphonefirstapp / forms.workingdays
     );
-    const incomepercall = Math.round(forms.cashweek / numberofphonefirstapp);
+    const incomepercall = Math.round(cashperweek / numberofphonefirstapp);
     const data = {
+      cashperweek,
       cashbeforeadvance,
       premiumissued,
       premiumsubmitted,
@@ -89,7 +103,6 @@ export const CalculatorForm = () => {
       incomepercall,
     };
     setCalcalculatedValues(data);
-    console.log(form);
   };
 
   //Onchange Handlers
@@ -103,19 +116,141 @@ export const CalculatorForm = () => {
     });
   };
 
-  useEffect(calculateValues, [forms]);
+  // Event handler to update the name state variable
+  const handleNameChange = (e: any) => {
+    setName(e.target.value);
+  };
 
-  //Registering fields with React-Hook
-  //const cashField = register("cashweek", { required: true });
-  //const percentageField = register("percentagerange", { required: true });
+  // Event handler to update the email state variable
+  const handleEmailChange = (e: any) => {
+    setEmail(e.target.value);
+  };
+
+  const setLocalStorage = () => {
+    const storageData = {
+      Name: name,
+      EmailId: email,
+      Signature: sign,
+      Cash_Month: forms.cashmonth,
+      Cash_Week: calculatedValues.cashperweek,
+      Advance_percentage: forms.percentagerange,
+      Cash_Before_Advance: calculatedValues.cashbeforeadvance,
+      Commission_Rate: forms.commissionrange,
+      Total_Premium_Issed: calculatedValues.premiumissued,
+      Total_Premium_Submitted: calculatedValues.premiumsubmitted,
+      Total_Applications_Week: calculatedValues.applicationeachweek,
+      Number_Of_SuccCarryBacks: calculatedValues.noofsuccessfulcarrybacks,
+      CarryBacks_Presented_EachWeek: calculatedValues.carrybackseachweek,
+      Total_Scoop_Week: calculatedValues.scooppresentation,
+      First_Appointments: calculatedValues.appointmentconversionrate,
+      Number_Of_PhoneCalls: calculatedValues.numberofphonefirstapp,
+      Working_Days: forms.workingdays,
+      No_Of_PhoneCallsPerDay: calculatedValues.numberofcallsperday,
+      Income_Earned_PerCall: calculatedValues.incomepercall,
+    };
+    localStorage.setItem("calData", JSON.stringify(storageData));
+  };
+
+  const handleSubmit = async (e: any) => {
+    const reportData = {
+      Name: name,
+      EmailId: email,
+      Cash_Week: calculatedValues.cashperweek,
+      Advance_percentage: forms.percentagerange,
+      Commission_Rate: forms.commissionrange,
+      Working_Days: forms.workingdays,
+    };
+    try {
+      setIsPending("true");
+
+      const response = await fetch("http://localhost:5235/incomereport", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(reportData),
+      });
+
+      if (!response.ok) {
+        const errorMessage = `Failed to create income report. Status: ${response.status}`;
+        throw new Error(errorMessage);
+      }
+
+      const data = await response.json();
+      setLocalStorage();
+      navigate({
+        pathname: "/success",
+      });
+    } catch (error: any) {
+      console.error("Error:", error.errorMessage);
+      setIsPending("false");
+    }
+  };
+  useEffect(calculateValues, [forms]);
+  useEffect(() => {}, []);
+
   return (
-    <div className="container mx-auto">
-      <h1 className="text-white text-center text-3xl py-5 px-5 text">
+    <div className="container mx-auto" id="calculator">
+      <h1 className="text-white border-b text-center md:text-left text-3xl py-5 px-5 mx-8 text">
         Income Calculator
       </h1>
-      <div className="flex flex-wrap w-12/12 bg-grey border border-gray-500 rounded-xl mx-auto shadow-lg overflow-hidden">
-        <div className="w-1/3 px-3">
+      <div className="flex flex-col md:flex-row px-12 py-8">
+        <div className="mb-5 md:w-1/3 md:pr-3">
+          <label
+            htmlFor="Name"
+            className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+          >
+            Enter Your Name
+          </label>
+          <input
+            type="text"
+            id="username"
+            name="username"
+            value={name}
+            className="bg-gray-50 mb-5 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            placeholder="Enter Your Name"
+            required
+            onChange={handleNameChange}
+          />
+        </div>
+        <div className="md:w-1/3 md:px-3">
+          <label
+            htmlFor="Name"
+            className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+          >
+            Enter Your Email Address
+          </label>
+          <input
+            type="email"
+            id="useremail"
+            name="useremail"
+            value={email}
+            className="bg-gray-50 mb-5 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            placeholder="Enter Your Email"
+            required
+            onChange={handleEmailChange}
+          />
+        </div>
+      </div>
+      <div className="flex flex-col md:flex-row flex-wrap w-12/12 bg-grey border border-gray-500 rounded-xl mx-auto shadow-lg overflow-hidden">
+        <div className="md:w-1/3 px-3">
           <form className="max-w-sm mx-auto p-6" noValidate>
+            <div className="mb-5">
+              <label
+                htmlFor="cashweek"
+                className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+              >
+                Enter Cash Per Month
+              </label>
+              <input
+                type="number"
+                id="cashmonth"
+                name="cashmonth"
+                value={forms.cashmonth}
+                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                placeholder="0"
+                min="0"
+                onChange={handleChanges}
+              />
+            </div>
             <div className="mb-5">
               <label
                 htmlFor="cashweek"
@@ -127,37 +262,33 @@ export const CalculatorForm = () => {
                 type="number"
                 id="cashweek"
                 name="cashweek"
-                value={forms.cashweek}
+                value={calculatedValues.cashperweek}
                 className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 placeholder="0"
                 min="0"
                 onChange={handleChanges}
+                readOnly
               />
             </div>
-            <div className="relative mb-6">
+            <div className="mb-5">
               <label
                 htmlFor="percentagerange"
-                className="sr-block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
               >
                 Select Advanced Percentage
               </label>
-              <input
+              <select
+                className="select bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 id="percentagerange"
-                type="range"
                 name="percentagerange"
-                value={forms.percentagerange}
-                min="5"
-                max="100"
-                step={5}
-                className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer dark:bg-gray-700"
                 onChange={handleChanges}
-              ></input>
-              <span className="text-sm text-gray-500 dark:text-gray-400 absolute start-0 -bottom-6">
-                Min (5%)
-              </span>
-              <span className="text-sm text-gray-500 dark:text-gray-400 absolute end-0 -bottom-6">
-                Max (%100)
-              </span>
+              >
+                {[...Array(20)].map((_, index) => (
+                  <option key={index} value={(index + 1) * 5}>
+                    {(index + 1) * 5}%
+                  </option>
+                ))}
+              </select>
             </div>
             <div className="mb-5">
               <label
@@ -176,30 +307,25 @@ export const CalculatorForm = () => {
                 readOnly
               />
             </div>
-            <div className="relative mb-6">
+            <div className="mb-5">
               <label
                 htmlFor="commissionrange"
-                className="sr-block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
               >
                 Select Your Commmission Rate
               </label>
-              <input
+              <select
+                className="select bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 id="commissionrange"
                 name="commissionrange"
-                type="range"
-                value={forms.commissionrange}
-                min="5"
-                max="100"
-                step={5}
-                className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer dark:bg-gray-700"
                 onChange={handleChanges}
-              ></input>
-              <span className="text-sm text-gray-500 dark:text-gray-400 absolute start-0 -bottom-6">
-                Min (5%)
-              </span>
-              <span className="text-sm text-gray-500 dark:text-gray-400 absolute end-0 -bottom-6">
-                Max (%100)
-              </span>
+              >
+                {[...Array(20)].map((_, index) => (
+                  <option key={index} value={(index + 1) * 5}>
+                    {(index + 1) * 5}%
+                  </option>
+                ))}
+              </select>
             </div>
             <div className="mb-5">
               <label
@@ -240,7 +366,7 @@ export const CalculatorForm = () => {
             </div>
           </form>
         </div>
-        <div className="w-1/3 px-3">
+        <div className="md:w-1/3 px-3">
           <form className="max-w-sm mx-auto p-6">
             <div className="mb-5">
               <label
@@ -375,7 +501,7 @@ export const CalculatorForm = () => {
             </div>
           </form>
         </div>
-        <div className="w-1/3 px-3">
+        <div className="md:w-1/3 px-3">
           <form className="max-w-sm mx-auto p-6">
             <div className="mb-5">
               <label
@@ -492,8 +618,20 @@ export const CalculatorForm = () => {
             </div>
           </form>
         </div>
-        <div className="w-full flex justify-center py-3">
-          <button className="btn btn-primary">Generate Report</button>
+        <div className="w-full flex flex-row md:justify-left px-3">
+          <div className="md:w-2/3 flex flex-row px-3">
+            <div className="flex relative h-fit px-3 w-auto">
+              <Signature setSign={setSign}></Signature>
+            </div>
+          </div>
+        </div>
+        <div className="flex justify-center md:w-full align-center item-center mt-5 mx-6">
+          <button
+            className="btn btn-primary w-full md:w-1/3 my-3 mx-6"
+            onClick={handleSubmit}
+          >
+            Submit
+          </button>
         </div>
       </div>
     </div>

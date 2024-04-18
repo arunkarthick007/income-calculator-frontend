@@ -11,16 +11,11 @@ function Calculator() {
           src: "https://media.genistar.co.uk/graphics/logo/Genistar-master-logo-dark-24.svg",
           alt: "Logo",
         }}
-        links={[
-          { title: "Home", url: "https://genistar.co.uk/" },
-          { title: "About", url: "https://genistar.co.uk/who-we-are" },
-        ]}
-        buttons={[{ title: "Calculator", size: "sm", variant: "primary" }]}
       />
       <div>
         <Header36
-          heading="Empowering Families Through Financial Education" // Set the heading prop
-          description="At Genistar, we are dedicated to educating families about their financial choices, helping them achieve financial freedom and security." // Set the description prop
+          heading="Genistar Worksheet For Personal Income" // Set the heading prop
+          description="Plan Your Work, Work Your Plan!" // Set the description prop
           buttons={[{ title: "Learn More" }]} // Set the buttons prop
           image={{
             // Set the image prop
