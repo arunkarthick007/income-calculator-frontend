@@ -13,7 +13,7 @@ export const Navbar3 = (props: Navbar3Props) => {
 
   return (
     <nav className="grid h-auto w-full grid-cols-[1fr_max-content_1fr] items-center justify-between border-b border-border-primary bg-white px-[5%] md:min-h-18">
-      <div className="flex min-h-16 w-[100px] items-center md:w-1/4">
+      <div className="flex min-h-16 w-[100px] md:w-1/4 justify-center items-center">
         <img src={logo.src} alt={logo.alt} style={{ display: "block" }} />
       </div>
     </nav>
