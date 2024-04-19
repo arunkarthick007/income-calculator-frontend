@@ -208,115 +208,118 @@ function IncomePDF() {
               </View>
             </View>
 
-            <Text style={styles.para}>
-              In Order to submit{" "}
-              <Text style={{ color: "#DD5746" }}>
-                £ {data.Total_Premium_Submitted}
-              </Text>{" "}
-              in premium each week; I must do the following activity.
-            </Text>
-
-            <View style={styles.section}>
-              <View style={styles.dataRow}>
-                <Text style={styles.symbols}>£</Text>
-                <View style={styles.valuedata}>
-                  <Text style={styles.value}>
-                    {data.Total_Premium_Submitted}
-                  </Text>
+            <View>
+              <Text style={styles.para}>
+                In Order to submit{" "}
+                <Text style={{ color: "#DD5746" }}>
+                  £ {data.Total_Premium_Submitted}
+                </Text>{" "}
+                in premium each week; I must do the following activity.
+              </Text>
+              <View style={styles.section}>
+                <View style={styles.dataRow}>
+                  <Text style={styles.symbols}>£</Text>
+                  <View style={styles.valuedata}>
+                    <Text style={styles.value}>
+                      {data.Total_Premium_Submitted}
+                    </Text>
+                  </View>
+                  <Text style={styles.label}>Total Premium</Text>
                 </View>
-                <Text style={styles.label}>Total Premium</Text>
-              </View>
-              <View style={styles.dataRow}>
-                <Text style={styles.symbols}>£</Text>
-                <View style={styles.valuedata}>
-                  <Text style={styles.value}>400</Text>
-                </View>
-                <Text style={styles.label}>
-                  Your Average annual premium (company average is £300 annually)
-                </Text>
-              </View>
-              <View style={styles.dataRow}>
-                <Text style={styles.symbols}>=</Text>
-                <View style={styles.valuedata}>
-                  <Text style={styles.value}>
-                    {data.Total_Applications_Week}
-                  </Text>
-                </View>
-                <Text style={styles.label}>
-                  Total Number of Applications Each Week
-                </Text>
-              </View>
-              <View style={styles.dataRow}>
-                <Text style={styles.symbols}>÷</Text>
-                <View style={styles.valuedata}>
-                  <Text style={styles.value}>2</Text>
-                </View>
-                <Text style={styles.label}>
-                  Average number of applications per family(2 per 5 star family)
-                </Text>
-              </View>
-              <View style={styles.dataRow}>
-                <Text style={styles.symbols}>=</Text>
-                <View style={styles.valuedata}>
-                  <Text style={styles.value}>
-                    {data.Number_Of_SuccCarryBacks}
-                  </Text>
-                </View>
-                <Text style={styles.label}>
-                  Number of successful carrybacks
-                </Text>
-              </View>
-              <View style={styles.dataRow}>
-                <Text style={styles.symbols}>÷</Text>
-                <View style={styles.valuedata}>
-                  <Text style={styles.value}>80%</Text>
-                </View>
-                <Text style={styles.label}>
-                  Your closing rate (company average is 80%)
-                </Text>
-              </View>
-              <View style={styles.dataRow}>
-                <Text style={styles.symbols}>=</Text>
-                <View style={styles.valuedata}>
-                  <Text style={styles.value}>
-                    {data.CarryBacks_Presented_EachWeek}
-                  </Text>
-                </View>
-                <Text style={styles.label}>
-                  Total carrybacks presented each week
-                </Text>
-              </View>
-              <View
-                style={{
-                  flexDirection: "row",
-                  marginBottom: 5,
-                  paddingVertical: 5,
-                  height: 30,
-                }}
-              >
-                <Text style={styles.symbols}>÷</Text>
-                <View style={styles.valuedata}>
-                  <Text style={styles.value}>80%</Text>
-                </View>
-                <View>
+                <View style={styles.dataRow}>
+                  <Text style={styles.symbols}>£</Text>
+                  <View style={styles.valuedata}>
+                    <Text style={styles.value}>400</Text>
+                  </View>
                   <Text style={styles.label}>
-                    Your conversion rate of SCOOPS that become Carrybacks (Avg
-                    60%)
+                    Your Average annual premium (company average is £300
+                    annually)
                   </Text>
                 </View>
-              </View>
-              <View style={styles.dataRow}>
-                <Text style={styles.symbols}>=</Text>
-                <View style={styles.valuedata}>
-                  <Text style={styles.value}>{data.Total_Scoop_Week}</Text>
+                <View style={styles.dataRow}>
+                  <Text style={styles.symbols}>=</Text>
+                  <View style={styles.valuedata}>
+                    <Text style={styles.value}>
+                      {data.Total_Applications_Week}
+                    </Text>
+                  </View>
+                  <Text style={styles.label}>
+                    Total Number of Applications Each Week
+                  </Text>
                 </View>
-                <Text style={styles.label}>
-                  Total SCOOP presentations needed for the week
-                </Text>
+                <View style={styles.dataRow}>
+                  <Text style={styles.symbols}>÷</Text>
+                  <View style={styles.valuedata}>
+                    <Text style={styles.value}>2</Text>
+                  </View>
+                  <Text style={styles.label}>
+                    Average number of applications per family(2 per 5 star
+                    family)
+                  </Text>
+                </View>
+                <View style={styles.dataRow}>
+                  <Text style={styles.symbols}>=</Text>
+                  <View style={styles.valuedata}>
+                    <Text style={styles.value}>
+                      {data.Number_Of_SuccCarryBacks}
+                    </Text>
+                  </View>
+                  <Text style={styles.label}>
+                    Number of successful carrybacks
+                  </Text>
+                </View>
+                <View style={styles.dataRow}>
+                  <Text style={styles.symbols}>÷</Text>
+                  <View style={styles.valuedata}>
+                    <Text style={styles.value}>80%</Text>
+                  </View>
+                  <Text style={styles.label}>
+                    Your closing rate (company average is 80%)
+                  </Text>
+                </View>
+                <View style={styles.dataRow}>
+                  <Text style={styles.symbols}>=</Text>
+                  <View style={styles.valuedata}>
+                    <Text style={styles.value}>
+                      {data.CarryBacks_Presented_EachWeek}
+                    </Text>
+                  </View>
+                  <Text style={styles.label}>
+                    Total carrybacks presented each week
+                  </Text>
+                </View>
+                <View
+                  style={{
+                    flexDirection: "row",
+                    marginBottom: 5,
+                    paddingVertical: 5,
+                    height: 30,
+                  }}
+                >
+                  <Text style={styles.symbols}>÷</Text>
+                  <View style={styles.valuedata}>
+                    <Text style={styles.value}>80%</Text>
+                  </View>
+                  <View>
+                    <Text style={styles.label}>
+                      Your conversion rate of SCOOPS that become Carrybacks (Avg
+                      60%)
+                    </Text>
+                  </View>
+                </View>
+                <View style={styles.dataRow}>
+                  <Text style={styles.symbols}>=</Text>
+                  <View style={styles.valuedata}>
+                    <Text style={styles.value}>{data.Total_Scoop_Week}</Text>
+                  </View>
+                  <Text style={styles.label}>
+                    Total SCOOP presentations needed for the week
+                  </Text>
+                </View>
               </View>
             </View>
 
-            <View>
+            <View style={{ paddingTop: "10" }}>
               <Text style={styles.parawithspacing}>
                 Not all scheduled appointments become SCOOPS
               </Text>
@@ -331,10 +334,12 @@ function IncomePDF() {
                 <View style={styles.valuedata}>
                   <Text style={styles.value}>70</Text>
                 </View>
-                <Text style={styles.label}>
-                  Conversion rate of Appointments that become SCOOP
-                  Presentations (70%)
-                </Text>
+                <View>
+                  <Text style={styles.label}>
+                    Conversion rate of Appointments that become SCOOP
+                    Presentations (70%)
+                  </Text>
+                </View>
               </View>
 
               <View style={styles.dataRow}>
@@ -413,10 +418,12 @@ function IncomePDF() {
                 <View style={styles.valuedata}>
                   <Text style={styles.value}>{data.Income_Earned_PerCall}</Text>
                 </View>
-                <Text style={styles.label}>
-                  Income earned per phone call whether the call makes an
-                  appointment or not
-                </Text>
+                <View>
+                  <Text style={styles.label}>
+                    Income earned per phone call whether the call makes an
+                    appointment or not
+                  </Text>
+                </View>
               </View>
             </View>
           </View>

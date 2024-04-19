@@ -1,26 +1,28 @@
-import React, { useEffect, useState } from "react";
+import React, { MouseEventHandler, useEffect, useState } from "react";
 import { PDFDownloadLink } from "@react-pdf/renderer";
 import IncomePDF from "../../Components/IncomePDF";
 
 // App component
 const Success: React.FC = () => {
-  const [pdfLoaded, setPdfLoaded] = useState<boolean>(false);
+  const [pdfLoaded, setPdfLoaded] = useState<number>(0);
 
-  useEffect(() => {
-    // When pdfLoaded state becomes true, it means PDF has been loaded successfully
-    if (pdfLoaded) {
-      setPdfLoaded(true);
-    }
-  }, [pdfLoaded]);
   const handleEmail = () => {
     // Logic for emailing the report
     console.log("Emailing report...");
   };
 
+  const loadCounter = (loaded: boolean) => {
+    if (loaded)
+      setPdfLoaded((prev) => {
+        let temp = prev;
+        if (prev <= 3) temp++;
+        return temp;
+      });
+  };
   return (
     <div className="flex justify-center items-center h-screen">
       <div>
-        {pdfLoaded && (
+        {pdfLoaded > 2 && (
           <div className="border-2 border-grey-500 p-4 text-white-500">
             {" "}
             Success!
@@ -28,15 +30,16 @@ const Success: React.FC = () => {
         )}
         <div className="mt-4">
           <PDFDownloadLink document={<IncomePDF />} fileName="Income_Report">
-            {({ loading }) =>
-              loading ? (
+            {({ loading }) => {
+              loadCounter(!loading);
+              return loading ? (
                 <button>Loading Document...</button>
               ) : (
                 <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
                   Download Report
                 </button>
-              )
-            }
+              );
+            }}
           </PDFDownloadLink>
           <button
             className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded ml-4"
