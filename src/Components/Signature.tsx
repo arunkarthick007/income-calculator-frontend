@@ -37,10 +37,6 @@ const Signature: React.FC<Props> = ({ setSign }) => {
         mouseEvent: MouseEvent
       ) => {
         const rect = canvasDom.getBoundingClientRect();
-        console.log({
-          x: mouseEvent.clientX - rect.left,
-          y: mouseEvent.clientY - rect.top,
-        });
         return {
           x: mouseEvent.clientX - rect.left,
           y: mouseEvent.clientY - rect.top,

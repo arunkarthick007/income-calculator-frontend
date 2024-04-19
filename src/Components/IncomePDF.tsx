@@ -121,14 +121,11 @@ function IncomePDF() {
     const storeData = localStorage.getItem("calData");
     if (storeData) {
       const parsedData = JSON.parse(storeData);
-      console.log(parsedData);
       setData(parsedData);
     }
   };
   useEffect(loadData, []);
-  useEffect(() => {
-    console.log("Updated Data:", data);
-  }, [data]);
+  useEffect(() => {}, [data]);
   return (
     <Document>
       <Page wrap size="A4" style={styles.page}>

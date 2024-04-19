@@ -8,7 +8,6 @@ export type Layout1Props = React.ComponentPropsWithoutRef<"section">;
 export const Layout1 = () => {
   //const tagline = "";
   const heading = "Let's Get Started!";
-  ("Use our Income Calculator to understand your Financial Potential and make informed descions.");
   return (
     <section className="px-[5%] md:py-4 pt-12">
       <div className="container">
