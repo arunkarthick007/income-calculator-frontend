@@ -164,7 +164,7 @@ export const CalculatorForm = () => {
       setIsPending("true");
 
       const response = await fetch(
-        "https://income-calculator-api.herokuapp.com/",
+        "https://income-calculator-api.azurewebsites.net/incomereport",
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },
