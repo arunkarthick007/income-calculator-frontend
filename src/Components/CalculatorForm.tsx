@@ -163,11 +163,14 @@ export const CalculatorForm = () => {
     try {
       setIsPending("true");
 
-      const response = await fetch("http://localhost:5235/incomereport", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(reportData),
-      });
+      const response = await fetch(
+        "https://income-calculator-api.herokuapp.com/",
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(reportData),
+        }
+      );
 
       if (!response.ok) {
         const errorMessage = `Failed to create income report. Status: ${response.status}`;
