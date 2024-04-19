@@ -262,7 +262,7 @@ export const CalculatorForm = () => {
                 id="cashweek"
                 name="cashweek"
                 value={calculatedValues.cashperweek}
-                className="input input-ghost bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                className="input input-ghost disabled:text-white disabled:text-opacity-60 bg-gray-50 border border-gray-300  text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 placeholder="0"
                 min="0"
                 disabled
@@ -301,7 +301,7 @@ export const CalculatorForm = () => {
                 id="cashbeforeadvance"
                 name="cashbeforeadvance"
                 value={calculatedValues.cashbeforeadvance}
-                className="input input-ghost bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                className="input input-ghost disabled:text-white disabled:text-opacity-60 bg-gray-50 border border-gray-300  text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 placeholder="0"
                 readOnly
                 disabled
@@ -339,7 +339,7 @@ export const CalculatorForm = () => {
                 id="premiumissued"
                 name="premiumissued"
                 value={calculatedValues.premiumissued}
-                className="input input-ghost bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                className="input input-ghost disabled:text-white disabled:text-opacity-60 bg-gray-50 border border-gray-300  text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 placeholder="0"
                 readOnly
                 disabled
@@ -360,7 +360,7 @@ export const CalculatorForm = () => {
                 id="premiumsubmitted"
                 name="premiumsubmitted"
                 value={calculatedValues.premiumsubmitted}
-                className="input input-ghost bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                className="input input-ghost disabled:text-white disabled:text-opacity-60 bg-gray-50 border border-gray-300  text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 placeholder="0"
                 readOnly
                 disabled
@@ -381,7 +381,7 @@ export const CalculatorForm = () => {
                 type="number"
                 id="totalpremium"
                 value="400"
-                className="input input-ghost bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                className="input input-ghost disabled:text-white disabled:text-opacity-60 bg-gray-50 border border-gray-300  text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 readOnly
                 disabled
               />
@@ -398,7 +398,7 @@ export const CalculatorForm = () => {
                 id="applicationeachweek"
                 name="applicationeachweek"
                 value={calculatedValues.applicationeachweek}
-                className="input input-ghost bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                className="input input-ghost disabled:text-white disabled:text-opacity-60 bg-gray-50 border border-gray-300  text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 placeholder="0"
                 readOnly
                 disabled
@@ -415,7 +415,7 @@ export const CalculatorForm = () => {
                 type="number"
                 id="applicationweekaverage"
                 value={2}
-                className="input input-ghost bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                className="input input-ghost disabled:text-white disabled:text-opacity-60 bg-gray-50 border border-gray-300  text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 placeholder="0"
                 readOnly
                 disabled
@@ -433,7 +433,7 @@ export const CalculatorForm = () => {
                 id="noofsuccessfulcarrybacks"
                 name="noofsuccessfulcarrybacks"
                 value={calculatedValues.noofsuccessfulcarrybacks}
-                className="input input-ghost bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                className="input input-ghost disabled:text-white disabled:text-opacity-60 bg-gray-50 border border-gray-300  text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 placeholder="0"
                 readOnly
                 disabled
@@ -450,7 +450,7 @@ export const CalculatorForm = () => {
                 type="number"
                 id="closingrate"
                 value="80"
-                className="input input-ghost bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                className="input input-ghost disabled:text-white disabled:text-opacity-60 bg-gray-50 border border-gray-300  text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 placeholder="0"
                 readOnly
                 disabled
@@ -468,7 +468,7 @@ export const CalculatorForm = () => {
                 id="carrybackseachweek"
                 name="carrybackseachweek"
                 value={calculatedValues.carrybackseachweek}
-                className="input input-ghost bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                className="input input-ghost disabled:text-white disabled:text-opacity-60 bg-gray-50 border border-gray-300  text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 placeholder="0"
                 readOnly
                 disabled
@@ -485,7 +485,7 @@ export const CalculatorForm = () => {
                 type="number"
                 id="scoopconversionrate"
                 value={60}
-                className="input input-ghost bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                className="input input-ghost disabled:text-white disabled:text-opacity-60 bg-gray-50 border border-gray-300  text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 placeholder="0"
                 readOnly
                 disabled
@@ -496,14 +496,14 @@ export const CalculatorForm = () => {
                 htmlFor="scooppresentation"
                 className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
               >
-                Total SCOOP Presentations Done for the week
+                Total SCOOP Presentations needed for the week
               </label>
               <input
                 type="number"
                 id="scooppresentation"
                 name="scooppresentation"
                 value={calculatedValues.scooppresentation}
-                className="input input-ghost bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                className="input input-ghost disabled:text-white disabled:text-opacity-60 bg-gray-50 border border-gray-300  text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 placeholder="0"
                 readOnly
                 disabled
@@ -525,7 +525,7 @@ export const CalculatorForm = () => {
                 type="number"
                 id="appointmentconversionrate"
                 value={70}
-                className="input input-ghost bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                className="input input-ghost disabled:text-white disabled:text-opacity-60 bg-gray-50 border border-gray-300  text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 placeholder="0"
                 readOnly
                 disabled
@@ -543,7 +543,7 @@ export const CalculatorForm = () => {
                 id="appointmentconversionrate"
                 name="appointmentconversionrate"
                 value={calculatedValues.appointmentconversionrate}
-                className="input input-ghost bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                className="input input-ghost disabled:text-white disabled:text-opacity-60 bg-gray-50 border border-gray-300  text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 placeholder="0"
                 readOnly
                 disabled
@@ -563,7 +563,7 @@ export const CalculatorForm = () => {
                   value={calculatedValues.numberofphonefirstapp}
                   placeholder="0"
                   min="0"
-                  className="input input-ghost bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                  className="input input-ghost disabled:text-white disabled:text-opacity-60 bg-gray-50 border border-gray-300  text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                   readOnly
                   disabled
                 />
@@ -610,7 +610,7 @@ export const CalculatorForm = () => {
                 value={calculatedValues.numberofcallsperday}
                 placeholder="Type her"
                 min="0"
-                className="input input-ghost bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                className="input input-ghost disabled:text-white disabled:text-opacity-60 bg-gray-50 border border-gray-300  text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 readOnly
                 disabled
               />
@@ -626,7 +626,7 @@ export const CalculatorForm = () => {
                 type="number"
                 name="incomepercall"
                 value={calculatedValues.incomepercall}
-                className="input input-ghost bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                className="input input-ghost disabled:text-white disabled:text-opacity-60 bg-gray-50 border border-gray-300  text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 readOnly
                 disabled
               />
