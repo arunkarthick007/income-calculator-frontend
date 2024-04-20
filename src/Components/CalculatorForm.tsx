@@ -321,7 +321,7 @@ export const CalculatorForm = () => {
                 name="commissionrange"
                 onChange={handleChanges}
               >
-                {[...Array(20)].map((_, index) => (
+                {[...Array(23)].map((_, index) => (
                   <option key={index} value={(index + 1) * 5}>
                     {(index + 1) * 5}%
                   </option>
